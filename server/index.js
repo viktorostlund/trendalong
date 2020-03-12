@@ -13,6 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 server.listen(2000);
+let players;
 
 //Current game
 app.get('/api/:query', async (req, res) => {
@@ -21,17 +22,16 @@ app.get('/api/:query', async (req, res) => {
 });
 
 io.on('connection', async (socket) => {
-    let players = JSON.parse(await readFile('db.json'));
+    players = JSON.parse(await readFile('db.json'));
     socket.emit('all players', players);
     // setInterval(() => {
     //     socket.emit('all players', players);
     // }, 1000);
     socket.on('player answer', async (updatedPlayersList) => {
-        //Calculate points för length of word and trendiness based on API
+        //Calculate points for length of word and trendiness based on API
         players = updatedPlayersList;
-        // const jsonPlayers = JSON.stringify(players);
-        // await writeFile('db.json', jsonPlayers);
-        socket.emit('all players', players);
+        await writeFile('db.json', JSON.stringify(players));
+        // socket.emit('all players', players);
     });
 });
 
