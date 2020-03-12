@@ -5,11 +5,12 @@ const bodyParser = require('body-parser');
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const fs = require('fs');
+const util = require('util');
+const readFile = util.promisify(fs.readFile);
+const writeFile = util.promisify(fs.writeFile);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
-let words = ['hej', 'kul', 'bra'];
 
 server.listen(2000);
 
@@ -19,15 +20,18 @@ app.get('/api/:query', async (req, res) => {
     res.json(answer);
 });
 
-io.on('connection', function (socket) {
-    setInterval(() => {
-        socket.emit('current score', words);
-    }, 1000);
-    socket.on('player answer', function (answer) {
+io.on('connection', async (socket) => {
+    let players = JSON.parse(await readFile('db.json'));
+    socket.emit('all players', players);
+    // setInterval(() => {
+    //     socket.emit('all players', players);
+    // }, 1000);
+    socket.on('player answer', async (updatedPlayersList) => {
         //Calculate points för length of word and trendiness based on API
-        words.push(answer);
-        const jsonWords = JSON.stringify(words);
-        fs.appendFile('db.json', jsonWords, () => console.log('Hej') );
+        players = updatedPlayersList;
+        // const jsonPlayers = JSON.stringify(players);
+        // await writeFile('db.json', jsonPlayers);
+        socket.emit('all players', players);
     });
 });
 

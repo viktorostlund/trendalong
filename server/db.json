@@ -1,15 +1,1 @@
-[
-    {
-        "name": "Viktor",
-        "stats": {
-
-        },
-        "current_games": [
-
-        ],
-        "finished_games": [
-            
-        ]
-    }
-]
-["hej","kul","bra","dsfdsfgdg"]
+[{"id":0,"name":"Viktor","logged_in":false,"stats":{"points":20},"current_games":[],"finished_games":[]},{"id":1,"name":"Sebastian","logged_in":false,"stats":{"points":5},"current_games":[],"finished_games":[]},{"id":2,"name":"Soroush","logged_in":false,"stats":{"points":10},"current_games":[],"finished_games":[]}]
