@@ -14,6 +14,7 @@ app.use(bodyParser.json());
 
 server.listen(2000);
 let players;
+let games;
 
 //Current game
 app.get('/api/:query', async (req, res) => {
@@ -22,16 +23,16 @@ app.get('/api/:query', async (req, res) => {
 });
 
 io.on('connection', async (socket) => {
-    players = JSON.parse(await readFile('db.json'));
-    socket.emit('all players', players);
-    // setInterval(() => {
-    //     socket.emit('all players', players);
-    // }, 1000);
-    socket.on('player answer', async (updatedPlayersList) => {
+    players = JSON.parse(await readFile('players.json'));
+    games = JSON.parse(await readFile('games.json'));
+    socket.emit('server send', { players, games });
+    socket.on('client answer', async (updatedData) => {
+        updatedData.games.forEach(game => {
+            console.log(game.answers);
+        });
         //Calculate points for length of word and trendiness based on API
-        players = updatedPlayersList;
-        await writeFile('db.json', JSON.stringify(players));
-        // socket.emit('all players', players);
+        await writeFile('players.json', JSON.stringify(updatedData.players));
+        await writeFile('games.json', JSON.stringify(updatedData.games));
     });
 });
 
