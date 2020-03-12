@@ -1,0 +1,70 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+body {
+    background-color: cadetblue;
+}
+
+header {
+    background-color: blueviolet;
+    padding: 20px;
+}
+
+main {
+    background-color: burlywood;
+    padding: 20px
+}
+
+button {
+    cursor: pointer;
+    padding: 2px;
+    outline: 0;
+    background-color: transparent;
+    color: black;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+input {
+    font-size: 2em;
+    font-weight: 600;
+    margin-bottom: 10px;
+    width: 81%;
+    outline: 0;
+    border: 0.5px solid grey;
+    background-color: transparent;
+    border: none;
+}
+
+.header_container {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.main_container {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.player_icon {
+    float: right;
+}
+
+.login_container {
+    padding: 10px 0;
+}
+
+.players_container {
+    padding: 10px 0;
+}
+
+.games_container {
+    padding: 10px 0;
+}
+
+.answer__button {
+    display: none;
+}

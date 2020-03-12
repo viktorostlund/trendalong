@@ -4,13 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trendy and long</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <form>
-        <h1>Write a trendy and long phrase:</h1>
-        <input type="text">
-        <button>Send!</button>
-    </form>
+    <header>
+        <div class="header_container">
+            TrendyWords
+            <div class="player_icon"></div>
+        </div>
+    </header>
+    <main>
+        <div class="main_container">
+            <!-- <div class="login_container"></div> -->
+            <div class="games_container"></div>
+            <div class="players_container"></div>
+            <!-- Main
+            <form>
+                <h1>Enter a word:</h1>
+                <input type="text">
+                <button>Send!</button>
+            </form> -->
+        </div>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js"></script>
     <script src="index.js"></script>
 </body>
 </html>
