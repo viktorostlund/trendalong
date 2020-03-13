@@ -33,7 +33,7 @@ io.on('connection', async (socket) => {
             if (!lastAnswer.points) {
                 const apiKey = '73903bc158da44cea3011831d9e322c3';
                 const points = await axios.get(`http://newsapi.org/v2/everything?q=${lastAnswer.text}&apiKey=${apiKey}`).then(res => res.data.totalResults);
-                dataToSave.games[i].answers[dataToSave.games[i].answers.length - 1].points = Math.ceil(points / 1000);
+                dataToSave.games[i].answers[dataToSave.games[i].answers.length - 1].points = Math.ceil(points / 30000) + lastAnswer.text.length;
             }
         }
         await writeFile('players.json', JSON.stringify(dataToSave.players));
