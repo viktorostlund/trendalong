@@ -16,10 +16,10 @@ server.listen(2000);
 let players;
 let games;
 
-app.get('/api/:query', async (req, res) => {
-    const answer = await getNewsNumber(req.params.query);
-    res.json(answer);
-});
+// app.get('/api/:query', async (req, res) => {
+//     const answer = await getNewsNumber(req.params.query);
+//     res.json(answer);
+// });
 
 io.on('connection', async (socket) => {
     players = JSON.parse(await readFile('players.json'));
@@ -41,7 +41,7 @@ io.on('connection', async (socket) => {
     });
 });
 
-app.listen(3000);
+// app.listen(3000);
 
 // const getNewsNumber = async (query) => {
 //     const apiKey = '73903bc158da44cea3011831d9e322c3';
