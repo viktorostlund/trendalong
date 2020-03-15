@@ -1,42 +1,88 @@
 * {
     padding: 0;
     margin: 0;
-    font-family: sans-serif;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    box-sizing: border-box;
 }
 
 body {
-    background-color: cadetblue;
+    font-size: calc(0.7em + 0.5vw);
+    background-color: rgb(20, 23, 53);
+    color: rgb(226, 226, 209);
 }
 
 header {
-    background-color: blueviolet;
+    background-color: rgb(30, 39, 124);
     padding: 20px;
+    color: rgb(160, 160, 160);
 }
 
 main {
-    background-color: burlywood;
+    background-color: transparent;
     padding: 20px
 }
 
 button {
     cursor: pointer;
-    padding: 2px;
+    padding: 1px 2px;
     outline: 0;
     background-color: transparent;
-    color: black;
-    border: 1px solid black;
+    color: rgb(149, 149, 126);
+    border: 0.5px solid rgb(149, 149, 126);
     border-radius: 5px;
 }
 
+h2 {
+    margin-top: 10px;
+    color: rgb(255, 255, 110);
+}
+
+button:hover {
+    color: rgb(226, 226, 209);
+    border: 0.5px solid rgb(226, 226, 209);
+}
+
 input {
+    background-color: transparent;
+    outline: 0;
+    max-width: 80%;
+    color: rgb(226, 226, 209);
+}
+
+.logo {
+    /* font-weight: 900; */
+    color: rgb(233, 178, 0);
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.3em;
+    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: rgb(251, 255, 43);
+}
+
+.end_game__button {
+    margin-top: 10px;
+    font-size: larger;
+}
+
+.button--hidden {
+    display: none;
+}
+
+.answer__input {
+    border: 0.5px solid rgb(226, 226, 209);;
+    margin: 20px;
+    padding: 5px;
     font-size: 2em;
     font-weight: 600;
-    margin-bottom: 10px;
-    width: 81%;
-    outline: 0;
-    border: 0.5px solid grey;
-    background-color: transparent;
+}
+
+.new_player__input {
     border: none;
+    font-size: 1em;
+    font-weight: 500;
+}
+
+.new_player__button {
+    display: none;
 }
 
 .header_container {
@@ -58,11 +104,18 @@ input {
 }
 
 .players_container {
-    padding: 10px 0;
+    padding: 20px 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    border: 3px solid rgb(8, 66, 121);
 }
 
 .games_container {
-    padding: 10px 0;
+    padding: 30px;
+    background-color: rgb(0, 67, 167);
+    border: 3px solid rgb(83, 128, 211);
+    text-align: center;
+    border-radius: 10px;
 }
 
 .answer__button {

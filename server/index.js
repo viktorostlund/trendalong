@@ -12,14 +12,10 @@ const writeFile = util.promisify(fs.writeFile);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-server.listen(2000);
 let players;
 let games;
 
-// app.get('/api/:query', async (req, res) => {
-//     const answer = await getNewsNumber(req.params.query);
-//     res.json(answer);
-// });
+server.listen(2000);
 
 io.on('connection', async (socket) => {
     players = JSON.parse(await readFile('players.json'));
@@ -31,9 +27,7 @@ io.on('connection', async (socket) => {
             const game = dataToSave.games[i];
             const lastAnswer = game.answers[game.answers.length - 1];
             if (!lastAnswer.points) {
-                const apiKey = '73903bc158da44cea3011831d9e322c3';
-                const points = await axios.get(`http://newsapi.org/v2/everything?q=${lastAnswer.text}&apiKey=${apiKey}`).then(res => res.data.totalResults);
-                dataToSave.games[i].answers[dataToSave.games[i].answers.length - 1].points = Math.ceil(points / 30000) + lastAnswer.text.length;
+                dataToSave.games[i].answers[dataToSave.games[i].answers.length - 1].points = Math.ceil(await numberOfTrendy(lastAnswer.text) / 30000) + lastAnswer.text.length;
             }
         }
         await writeFile('players.json', JSON.stringify(dataToSave.players));
@@ -41,10 +35,8 @@ io.on('connection', async (socket) => {
     });
 });
 
-// app.listen(3000);
-
-// const getNewsNumber = async (query) => {
-//     const apiKey = '73903bc158da44cea3011831d9e322c3';
-//     const result = await axios.get(`http://newsapi.org/v2/everything?q=${query}&apiKey=${apiKey}`).then(res => res.data.totalResults);
-//     return result;
-// }
+const numberOfTrendy = async (query) => {
+    const apiKey = '73903bc158da44cea3011831d9e322c3';
+    const points = await axios.get(`http://newsapi.org/v2/everything?q=${query}&apiKey=${apiKey}`).then(res => res.data.totalResults);
+    return points;
+}
